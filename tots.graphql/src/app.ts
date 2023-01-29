@@ -24,11 +24,11 @@ void (async () => {
     })
   );
 
-  const port = process.env.APP_SERVER_PORT;
+  const port = process.env.GRAPHQL_PORT;
 
   if (port === undefined) {
     throw new Error(
-      "Enviroment Variable {{ APP_SERVER_PORT }} is undefined"
+      "Enviroment Variable {{ GRAPHQL_PORT }} is undefined"
     );
   }
 
