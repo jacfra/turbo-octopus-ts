@@ -1,0 +1,62 @@
+{
+  "name": "token-price",
+  "version": "1.0.0",
+  "author": "jacfra <95544241+jacfra@users.noreply.github.com>",
+  "private": true,
+  "scripts": {
+    "deploy": "run-s migrate seed launch",
+    "migrate": "npx prisma migrate deploy",
+    "seed": "npx prisma db seed",
+    "launch": "node /app/dist/src/app.js",
+    "generate": "npx prisma generate",
+    "build": "tsc -p ./deploy.tsconfig.json",
+    "lint": "eslint . --fix",
+    "test": "jest",
+    "prepare": "cd .. && husky install",
+    "emit": "node ./dist/emit-gql-schema.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.9.0",
+    "@types/express": "^4.17.14",
+    "@types/node-fetch": "^2.6.2",
+    "@types/validator": "^13.7.10",
+    "class-validator": "^0.14.0",
+    "cross-env": "^7.0.3",
+    "decimal.js": "^10.4.2",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
+    "inversify": "^6.0.1",
+    "log4js": "^6.7.0",
+    "moment": "^2.29.4",
+    "npm-run-all": "^4.1.5",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.10",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@jest/globals": "^29.3.1",
+    "@tsconfig/node18": "^1.0.1",
+    "@types/jest": "^29.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "jest-mock-extended": "^3.0.1",
+    "prettier": "2.8.3",
+    "prisma": "^4.9.0",
+    "sql.js": "^1.8.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typegraphql-prisma": "^0.23.3",
+    "typescript": "^4.9.4"
+  },
+  "prisma": {
+    "seed": "node /app/dist/prisma/seed.js"
+  }
+}

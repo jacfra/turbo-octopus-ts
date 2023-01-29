@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Asset {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  name           String   @db.VarChar
+  onBlockchainId DateTime @db.Date
+  A_event_entity Event[]  @relation("A_asset")
+  B_event_entity Event[]  @relation("B_asset")
+}
+
+model Demo {
+  id    Int    @id @default(autoincrement())
+  value String @db.VarChar
+}
+
+model Event {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  A_assetId     Int
+  A_amount      Decimal  @db.Decimal(8, 2)
+  B_assetId     Int
+  B_amount      Decimal  @db.Decimal(8, 2)
+  sourceId      Int
+  networkId      Int
+  at             DateTime @db.Date
+  network_entity Network  @relation(fields: [networkId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  source_entity Source   @relation(fields: [sourceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  A_asset       Asset    @relation("A_asset", fields: [A_assetId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  B_asset       Asset    @relation("B_asset", fields: [B_assetId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Network {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar
+  description String   @db.VarChar
+  event_entity Event[]
+}
+
+model Source {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  title        String   @db.VarChar
+  description  String   @db.VarChar
+  event_entity Event[]
+}

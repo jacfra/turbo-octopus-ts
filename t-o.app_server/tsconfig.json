@@ -1,0 +1,29 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "lib": [
+      "es2022",
+      "esnext.asynciterable"
+    ],
+    "types": [
+      "node",
+      "jest",
+      "reflect-metadata"
+    ],
+  },
+  "include": [
+    "./src/**/*",
+    "./test/**/*",
+    "./prisma/**/*",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
