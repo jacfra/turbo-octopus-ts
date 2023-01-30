@@ -1,16 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 import request from "graphql-request";
-import React from "react";
+import { REACT_APP_GRAPHQL_PORT } from "../env";
+import { DemoQuery } from "../gql/graphql";
 
-const query = /* GraphQL */ `
-  query messageQuery {
-    messageQuery {
-      message
+
+export function DemoComponent() {
+  const query = /* GraphQL */ `
+  query demo {
+    demo {
+      id,
+      value
     }
   }
 `;
 
-// const { data } = useQuery<PostQuery>("posts", async () => {
-//   const { posts } = await request("", query);
-//   return posts;
-// });
+  const { data } = useQuery<DemoQuery>({
+    queryKey: ["demo"],
+    queryFn: async () =>
+      request(
+        `http://localhost:${REACT_APP_GRAPHQL_PORT}/graphql`,
+        query,
+      ),
+  });
+
+
+
+  return (
+    <div className="Demo">
+      {data && data.demo.map(x => (<p> {x.value} </p>))}
+    </div >
+  );
+}

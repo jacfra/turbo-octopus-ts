@@ -14,21 +14,21 @@ export type Scalars = {
   Float: number;
 };
 
-export type GqlMessage = {
-  __typename?: 'GqlMessage';
-  message: Scalars['String'];
+export type Demo = {
+  __typename?: 'Demo';
+  id: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  messageQuery: GqlMessage;
-  populateAddressTransactions: GqlMessage;
+  demo: Array<Demo>;
 };
 
-export type MessageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type DemoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MessageQueryQuery = { __typename?: 'Query', messageQuery: { __typename?: 'GqlMessage', message: string } };
+export type DemoQuery = { __typename?: 'Query', demo: Array<{ __typename?: 'Demo', id: number, value: string }> };
 
 
-export const MessageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"messageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"messageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<MessageQueryQuery, MessageQueryQueryVariables>;
+export const DemoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"demo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"demo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<DemoQuery, DemoQueryVariables>;

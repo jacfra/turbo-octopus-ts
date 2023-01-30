@@ -37,7 +37,9 @@ RUN npm install
 
 # RUN npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
 
-ARG configuration=production
+# necessary for docker to define the process.env.REACT_APP_GRAPHQL_PORT
+ARG REACT_APP_GRAPHQL_PORT
+
 RUN npm run build
 
 

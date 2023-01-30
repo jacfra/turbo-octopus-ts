@@ -1,0 +1,1 @@
+export const REACT_APP_GRAPHQL_PORT: string = process.env.REACT_APP_GRAPHQL_PORT || "UndefinedError";

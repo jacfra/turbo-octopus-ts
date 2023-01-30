@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: '../.env' });
 
 const config: CodegenConfig = {
-    schema: `http://localhost:${process.env.GQL_PORT}/graphql`,
+    schema: `http://localhost:${process.env.REACT_APP_GRAPHQL_PORT}/graphql`,
     documents: ['src/**/*.tsx', '!src/gql/**/*'],
     generates: {
         './src/gql/': {
@@ -13,4 +13,5 @@ const config: CodegenConfig = {
         }
     }
 }
+
 export default config
