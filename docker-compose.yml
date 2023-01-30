@@ -30,14 +30,14 @@ services:
       - db
     volumes:
       - pg_admin_vol:/var/lib/pgadmin
-  tots.graphql:
+  to.graphql:
     environment:
       DATABASE_URL: postgresql://${DB_USERNAME_EMAIL}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?schema=public
       BLOCK_FROST_API_KEY: ${BLOCK_FROST_API_KEY}
       REACT_APP_GRAPHQL_PORT: ${REACT_APP_GRAPHQL_PORT}
     restart: always
     build:
-      context: ./tots.graphql
+      context: ./to.graphql
       dockerfile: Dockerfile
     command:
       [
@@ -53,15 +53,15 @@ services:
     ports:
       # host:container
       - "${REACT_APP_GRAPHQL_PORT}:${REACT_APP_GRAPHQL_PORT}"
-  tots.react:
+  to.react:
     restart: always
     build:
-      context: ./tots.react
+      context: ./to.react
       dockerfile: Dockerfile
       args:
         REACT_APP_GRAPHQL_PORT: ${REACT_APP_GRAPHQL_PORT}
     depends_on:
-      - tots.graphql
+      - to.graphql
     ports:
       # host:container
       - "${REACT_APP_REACT_PORT}:80"

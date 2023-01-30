@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd tots.graphql
+cd to.graphql
 npm run lint
 
-cd ../tots.react
+cd ../to.react
 npm run lint
